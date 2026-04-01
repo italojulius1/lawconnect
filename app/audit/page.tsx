@@ -1154,10 +1154,10 @@ function EmailSection() {
                   <div className="flex justify-between"><span className="text-zinc-400">Primary CTA</span><span className="font-medium text-zinc-700 dark:text-zinc-300">{email.cta}</span></div>
                 </div>
               </div>
-              {email.rationale && (
+              {email.fix && (
                 <div className="rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-100 dark:border-amber-900 p-4">
                   <p className="text-xs font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-2">Why this works</p>
-                  <p className="text-xs text-amber-700 dark:text-amber-300 leading-relaxed">{email.rationale}</p>
+                  <p className="text-xs text-amber-700 dark:text-amber-300 leading-relaxed">{email.fix}</p>
                 </div>
               )}
             </div>
