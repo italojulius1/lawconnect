@@ -6,7 +6,7 @@ import { funnelStages, cities, practiceAreas, seoGrid, growthInitiatives, social
 type Section = "overview" | "funnel" | "seo" | "campaign" | "email" | "plan";
 
 const NAV: { id: Section; label: string; description: string }[] = [
-  { id: "overview", label: "Overview", description: "What we found · what to change" },
+  { id: "overview", label: "Overview", description: "What I found · what to change" },
   { id: "funnel", label: "Funnel CRO", description: "Small fixes, meaningful lift" },
   { id: "seo", label: "SEO Gap Map", description: "Strong base, big growth gaps" },
   { id: "campaign", label: "Campaign Flow", description: "AI as the acquisition hook" },
@@ -653,118 +653,6 @@ function CampaignSection() {
           {aiFlowSteps.map((_, i) => (
             <button key={i} onClick={() => setActiveFlow(i)} className={`w-1.5 h-1.5 rounded-full transition-colors ${i === activeFlow ? "bg-zinc-900 dark:bg-white" : "bg-zinc-200 dark:bg-zinc-700"}`} />
           ))}
-        </div>
-      </div>
-
-      {/* Page mockups — before / after */}
-      <div>
-        <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-4">Homepage — Before vs After</p>
-        <div className="grid sm:grid-cols-2 gap-5">
-          {/* Current */}
-          <div className="rounded-2xl border-2 border-zinc-200 dark:border-zinc-800 overflow-hidden">
-            <div className="bg-zinc-100 dark:bg-zinc-800 px-4 py-2 flex items-center justify-between">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-zinc-300 dark:bg-zinc-600" />
-                <div className="w-3 h-3 rounded-full bg-zinc-300 dark:bg-zinc-600" />
-                <div className="w-3 h-3 rounded-full bg-zinc-300 dark:bg-zinc-600" />
-              </div>
-              <div className="text-xs text-zinc-400 font-mono">lawconnect.com/en-au</div>
-              <div className="w-16" />
-            </div>
-            {/* Nav */}
-            <div className="bg-white dark:bg-zinc-950 px-5 py-3 border-b border-zinc-100 dark:border-zinc-900 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded bg-blue-500" />
-                <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">LawConnect</span>
-              </div>
-              <div className="flex gap-3">
-                <div className="text-xs text-zinc-400">Find a Lawyer</div>
-                <div className="text-xs text-zinc-400">How it works</div>
-                <div className="text-xs bg-blue-600 text-white px-2 py-0.5 rounded">Sign in</div>
-              </div>
-            </div>
-            {/* Hero */}
-            <div className="bg-white dark:bg-zinc-950 p-5">
-              <div className="mb-3">
-                <div className="flex items-center gap-1 mb-2">
-                  <span className="text-yellow-400 text-xs">★★★★★</span>
-                  <span className="text-xs text-zinc-500">4.8 · 35,858 reviews</span>
-                </div>
-                <h3 className="text-base font-bold text-zinc-900 dark:text-white leading-tight mb-2">
-                  Find trusted lawyers across Australia
-                </h3>
-                <p className="text-xs text-zinc-500 leading-relaxed mb-4">
-                  Tell us about your situation, and we'll match you with a lawyer suited to your needs, giving you a clear and confident starting point.
-                </p>
-                <div className="flex gap-2">
-                  <div className="flex-1 rounded-lg bg-blue-600 text-white text-xs font-semibold text-center py-2">
-                    Find a lawyer
-                  </div>
-                  <div className="flex-1 rounded-lg border border-zinc-200 dark:border-zinc-700 text-xs text-zinc-600 dark:text-zinc-400 font-medium text-center py-2">
-                    Ask a question
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="bg-red-50 dark:bg-red-950/20 border-t border-red-100 dark:border-red-900 px-4 py-2">
-              <p className="text-xs text-red-500">
-                Issue: "Find a lawyer" requires trust the visitor hasn't built yet. Dual CTAs split intent.
-              </p>
-            </div>
-          </div>
-
-          {/* Proposed */}
-          <div className="rounded-2xl border-2 border-violet-300 dark:border-violet-700 overflow-hidden">
-            <div className="bg-violet-100 dark:bg-violet-900/40 px-4 py-2 flex items-center justify-between">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-violet-300 dark:bg-violet-600" />
-                <div className="w-3 h-3 rounded-full bg-violet-300 dark:bg-violet-600" />
-                <div className="w-3 h-3 rounded-full bg-violet-300 dark:bg-violet-600" />
-              </div>
-              <div className="text-xs text-violet-500 font-mono">lawconnect.com/en-au</div>
-              <div className="w-16" />
-            </div>
-            {/* Nav */}
-            <div className="bg-white dark:bg-zinc-950 px-5 py-3 border-b border-zinc-100 dark:border-zinc-900 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded bg-violet-500" />
-                <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">LawConnect</span>
-              </div>
-              <div className="flex gap-3">
-                <div className="text-xs text-zinc-400">Find a Lawyer</div>
-                <div className="text-xs text-zinc-400">How it works</div>
-                <div className="text-xs bg-violet-600 text-white px-2 py-0.5 rounded">Sign in</div>
-              </div>
-            </div>
-            {/* Hero */}
-            <div className="bg-white dark:bg-zinc-950 p-5">
-              <div className="mb-3">
-                <div className="inline-flex items-center gap-1.5 rounded-full bg-violet-50 dark:bg-violet-950 border border-violet-100 dark:border-violet-900 px-2.5 py-1 mb-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-violet-500" />
-                  <span className="text-xs text-violet-600 dark:text-violet-400">Free · No sign-up needed</span>
-                </div>
-                <h3 className="text-base font-bold text-zinc-900 dark:text-white leading-tight mb-2">
-                  Understand your rights before you call a lawyer.
-                </h3>
-                <p className="text-xs text-zinc-500 leading-relaxed mb-4">
-                  Ask LawConnect's free AI any legal question. Get a plain-English answer in minutes — then decide if you need legal help.
-                </p>
-                <div className="rounded-lg bg-violet-600 text-white text-xs font-semibold text-center py-2 mb-2">
-                  Ask the AI — it's free
-                </div>
-                <div className="text-center text-xs text-zinc-400">or <span className="underline">browse lawyers</span></div>
-                <div className="flex items-center justify-center gap-1 mt-3">
-                  <span className="text-yellow-400 text-xs">★★★★★</span>
-                  <span className="text-xs text-zinc-500">4.8 · 35,858 people helped · No sign-up</span>
-                </div>
-              </div>
-            </div>
-            <div className="bg-emerald-50 dark:bg-emerald-950/20 border-t border-emerald-100 dark:border-emerald-900 px-4 py-2">
-              <p className="text-xs text-emerald-600 dark:text-emerald-400">
-                Fix: leads with zero-friction offer. Single CTA. Trust signal repositioned to reinforce free AI, not lawyer marketplace.
-              </p>
-            </div>
-          </div>
         </div>
       </div>
 
