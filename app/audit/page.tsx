@@ -1212,7 +1212,7 @@ export default function AuditPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white">
       {/* Top bar */}
-      <header className="border-b border-zinc-100 dark:border-zinc-900 px-6 py-4">
+      <header className="border-b border-zinc-100 dark:border-zinc-900 px-4 md:px-6 py-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div>
             <div className="flex items-center gap-3">
@@ -1233,9 +1233,28 @@ export default function AuditPage() {
         </div>
       </header>
 
-      <div className="max-w-6xl mx-auto px-6 py-8 flex gap-8">
-        {/* Sidebar */}
-        <aside className="w-52 shrink-0">
+      {/* Mobile nav — horizontal scroll tabs */}
+      <div className="md:hidden border-b border-zinc-100 dark:border-zinc-900 overflow-x-auto">
+        <div className="flex px-4 py-2 gap-2 min-w-max">
+          {NAV.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => setActive(item.id)}
+              className={`shrink-0 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
+                active === item.id
+                  ? "bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-white"
+                  : "text-zinc-500"
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 md:px-6 py-6 md:py-8 md:flex md:gap-8">
+        {/* Sidebar — desktop only */}
+        <aside className="hidden md:block w-52 shrink-0">
           <nav className="space-y-1 sticky top-8">
             {NAV.map((item) => (
               <button
@@ -1269,6 +1288,13 @@ export default function AuditPage() {
           {active === "email" && <EmailSection />}
           {active === "matrix" && <MatrixSection />}
         </main>
+      </div>
+
+      {/* Mobile footer */}
+      <div className="md:hidden border-t border-zinc-100 dark:border-zinc-900 px-4 py-4 text-center space-y-1">
+        <p className="text-xs text-zinc-400">Built with Claude Code</p>
+        <p className="text-xs text-zinc-300 dark:text-zinc-600">marketingskills by coreyhaines31</p>
+        <p className="text-xs text-zinc-400">Project by Italo Camargo</p>
       </div>
     </div>
   );
