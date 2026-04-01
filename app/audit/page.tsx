@@ -6,7 +6,7 @@ import { funnelStages, cities, practiceAreas, seoGrid, growthInitiatives, social
 type Section = "plan" | "campaign" | "funnel" | "seo" | "email" | "matrix";
 
 const NAV: { id: Section; label: string; description: string }[] = [
-  { id: "plan", label: "90-Day Plan", description: "First 90 days if I join" },
+  { id: "plan", label: "90-Day Plan", description: "First 90 days" },
   { id: "campaign", label: "Campaign Flow", description: "AI hook · ads · page mockups" },
   { id: "funnel", label: "Funnel CRO", description: "Stage-by-stage analysis" },
   { id: "seo", label: "SEO Gap Map", description: "City × practice area coverage" },
