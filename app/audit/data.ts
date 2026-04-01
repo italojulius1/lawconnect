@@ -73,31 +73,36 @@ export const funnelStages = [
     id: "landing",
     stage: "03",
     name: "Landing",
-    description: "Hero page — first impression for all traffic",
-    friction: "The hero leads with the lawyer directory rather than the free AI tool. For cold traffic, this implies cost and commitment before any trust has been built.",
+    description: "Homepage hero — dual CTAs competing for the same cold visitor",
+    friction: "The headline 'Find trusted lawyers across Australia' frames the product around lawyers first. The AI tool is co-equal in the hero, but two CTAs side by side ('Find a lawyer' / 'Ask a question') create choice paralysis — especially for paid traffic that arrived expecting a free answer, not a commitment to find a lawyer.",
     tests: [
       {
-        hypothesis: "Lead the hero with the free AI offer — 'Get a free legal answer in 2 minutes' as the primary CTA",
-        expectedLift: "+18% AI chat starts from homepage",
+        hypothesis: "For paid search traffic: send clicks to a dedicated landing page with a single CTA ('Ask a question free') instead of the homepage — remove the lawyer-finding option entirely from the first screen",
+        expectedLift: "+25% AI chat starts from paid traffic",
+        effort: "Medium",
+      },
+      {
+        hypothesis: "Reframe the headline around the problem, not the product — 'Got a legal question? Get an instant answer' — then present AI first, lawyer-matching as the natural next step",
+        expectedLift: "+15% overall hero engagement",
         effort: "Low",
       },
       {
-        hypothesis: "Embed a 'What's your legal issue?' input directly in the hero — skip the click entirely",
-        expectedLift: "+22% engagement rate",
-        effort: "Medium",
+        hypothesis: "Add 'free · no sign-up · 2 minutes' micro-copy under the AI CTA to distinguish it from the lawyer option which implies cost",
+        expectedLift: "+12% AI CTA click-through",
+        effort: "Low",
       },
     ],
-    quickWin: "Move the 4.8★ / 35,858 reviews badge directly under the primary CTA — social proof should reinforce the action, not sit separately.",
+    quickWin: "Add 'free · 2 min · no sign-up' directly under the 'Ask a question' button — the two CTAs look identical in weight right now, and cold traffic can't tell which one costs money.",
     before: {
       label: "Current",
-      issue: "Hero leads with the lawyer marketplace. Implies cost and commitment before the user understands the product.",
+      issue: "Two equal CTAs: 'Find a lawyer' and 'Ask a question'. Headline leads with lawyers. Cold traffic doesn't know which path to take or that the AI option is free.",
       screen: {
         type: "landing-before",
       },
     },
     after: {
       label: "Proposed",
-      fix: "Lead with the free AI offer. Single clear CTA. Trust signal reinforces zero cost, zero obligation.",
+      fix: "Headline reframed to the user's problem. AI CTA is visually primary. 'Free · no sign-up' removes cost anxiety. Lawyer-matching stays as the natural next step after the AI report.",
       screen: {
         type: "landing-after",
       },
