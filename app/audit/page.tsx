@@ -3,15 +3,14 @@
 import { useState } from "react";
 import { funnelStages, cities, practiceAreas, seoGrid, growthInitiatives, socialAds, semAds, pageComparison, aiFlowSteps, seoOpportunities, currentCommsAudit, proposedSequences, ninetyDayPlan } from "./data";
 
-type Section = "overview" | "funnel" | "seo" | "campaign" | "email" | "matrix" | "plan";
+type Section = "overview" | "funnel" | "seo" | "campaign" | "email" | "plan";
 
 const NAV: { id: Section; label: string; description: string }[] = [
-  { id: "overview", label: "Overview", description: "Thesis · 4 core insights" },
+  { id: "overview", label: "Overview", description: "What we found · what to change" },
   { id: "funnel", label: "Funnel CRO", description: "Small fixes, meaningful lift" },
   { id: "seo", label: "SEO Gap Map", description: "Strong base, big growth gaps" },
   { id: "campaign", label: "Campaign Flow", description: "AI as the acquisition hook" },
   { id: "email", label: "Email & SMS", description: "Close the loop after AI report" },
-  { id: "matrix", label: "Growth Matrix", description: "What to do first" },
   { id: "plan", label: "90-Day Plan", description: "First 90 days" },
 ];
 
@@ -208,35 +207,64 @@ function OverviewSection({ setActive }: { setActive: (s: Section) => void }) {
     },
   ];
 
+  const findings = [
+    { label: "Strong funnel", detail: "Core product works — users land, engage with AI, and connect with lawyers" },
+    { label: "Good SEO base", detail: "Already ranking for core practice areas across major cities" },
+    { label: "Differentiated AI tool", detail: "Free legal AI is a genuine moat vs. traditional lawyer directories" },
+    { label: "Engaged user base", detail: "Users who complete the AI report are qualified and high-intent" },
+  ];
+
+  const changes = [
+    { label: "Simplify the funnel", detail: "One CTA on landing, guided AI input, lawyer match surfaced in the report" },
+    { label: "Fill SEO gaps", detail: "High-volume city × practice area pages that don't exist yet — Sydney Immigration, Perth Injury, Canberra Employment" },
+    { label: "Lead with AI in paid", detail: "'Free legal answer' beats 'find a lawyer' for cold traffic — lower CPC, warmer conversion" },
+    { label: "Follow up after the AI report", detail: "A 2-step sequence connecting users to a matched lawyer is the highest-leverage quick win" },
+  ];
+
   return (
-    <div className="space-y-10">
+    <div className="space-y-8">
       <div>
-        <div className="flex items-center gap-3 mb-2">
-          <h2 className="text-2xl font-bold tracking-tight">Growth Audit — LawConnect</h2>
-        </div>
+        <h2 className="text-2xl font-bold tracking-tight mb-1">Growth Audit — LawConnect</h2>
         <p className="text-zinc-500 dark:text-zinc-400 text-sm max-w-2xl">
-          An independent audit covering consumer funnel CRO, SEO coverage gaps, campaign strategy, lifecycle email, and a prioritised growth matrix — built before the first conversation.
+          Independent audit covering funnel CRO, SEO gaps, campaign strategy, and lifecycle email — built before the first conversation.
         </p>
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-4">
-        {insights.map((ins) => (
-          <button
-            key={ins.nav}
-            onClick={() => setActive(ins.nav)}
-            className={`text-left rounded-2xl border p-5 transition-all hover:shadow-sm ${ins.color}`}
-          >
-            <span className={`inline-block text-xs font-medium px-2 py-0.5 rounded-full mb-3 ${ins.badge}`}>
-              {NAV.find(n => n.id === ins.nav)?.label}
-            </span>
-            <h3 className="font-semibold text-zinc-900 dark:text-white text-sm mb-2 leading-snug">{ins.title}</h3>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed mb-3">{ins.body}</p>
-            <span className="text-xs font-medium text-zinc-400 dark:text-zinc-500">{ins.cta}</span>
-          </button>
-        ))}
+      <div className="grid sm:grid-cols-2 gap-5">
+        {/* What we found */}
+        <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/20 p-5">
+          <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-4">What we found</p>
+          <div className="space-y-3">
+            {findings.map((f) => (
+              <div key={f.label} className="flex items-start gap-2.5">
+                <span className="text-emerald-500 mt-0.5 shrink-0 text-sm">✓</span>
+                <div>
+                  <span className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">{f.label} </span>
+                  <span className="text-sm text-zinc-500 dark:text-zinc-400">— {f.detail}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* What to change */}
+        <div className="rounded-2xl border border-violet-200 dark:border-violet-900 bg-violet-50 dark:bg-violet-950/20 p-5">
+          <p className="text-xs font-semibold text-violet-600 dark:text-violet-400 uppercase tracking-wider mb-4">What to change</p>
+          <div className="space-y-3">
+            {changes.map((c, i) => (
+              <button key={c.label} onClick={() => setActive(insights[i].nav)} className="flex items-start gap-2.5 w-full text-left group">
+                <span className="text-violet-400 mt-0.5 shrink-0 text-sm">→</span>
+                <div>
+                  <span className="text-sm font-semibold text-zinc-800 dark:text-zinc-200 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">{c.label} </span>
+                  <span className="text-sm text-zinc-500 dark:text-zinc-400">— {c.detail}</span>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
-      <div className="rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 p-6">
+      <div className="rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 p-5">
         <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
           <span className="font-semibold text-zinc-700 dark:text-zinc-300">The through-line:</span> Legal is high anxiety, high cost, high stakes. LawConnect already has the right product — the opportunity is in earning trust earlier and making it easier to take the next step. That's the lens applied across every section of this audit.
         </p>
@@ -893,7 +921,7 @@ function PlanSection() {
           <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500">Head of Growth · LawConnect</span>
         </div>
         <p className="text-zinc-500 dark:text-zinc-400 text-sm max-w-2xl">
-          Three phases: diagnose before acting, ship quick wins with real data, then scale what works. Week-by-week plan with concrete deliverables and the metrics I'd commit to moving.
+          Three phases built around the opportunities in this audit — funnel refinements, SEO gaps, AI-led campaign strategy, and the email follow-up sequence. Phase 1 is stakeholder immersion and data before touching anything. Week-by-week plan with the metrics I'd commit to moving.
         </p>
       </div>
 
@@ -1056,9 +1084,90 @@ function EmailSection() {
         </p>
       </div>
 
-      {/* Current state audit */}
+      {/* Proposed sequences — moved to top */}
       <div>
-        <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-4">What Actually Happened — Real User Evidence</p>
+        <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-1">Proposed Sequences</p>
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-5">
+          4 automated sequences covering the full lifecycle. Each email includes the fix rationale — what it replaces or adds.
+        </p>
+
+        {/* Sequence selector */}
+        <div className="flex flex-wrap gap-2 mb-6">
+          {proposedSequences.map((s, i) => (
+            <button
+              key={s.id}
+              onClick={() => { setActiveSeq(i); setActiveEmail(0); }}
+              className={`rounded-xl px-4 py-2.5 text-sm font-medium border transition-colors text-left ${
+                activeSeq === i ? SEQ_ACTIVE[s.color] : SEQ_COLORS[s.color]
+              }`}
+            >
+              <div>{s.name}</div>
+              <div className="text-xs opacity-70 font-normal mt-0.5">{s.trigger}</div>
+            </button>
+          ))}
+        </div>
+
+        <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
+          {/* Email steps */}
+          <div className="flex border-b border-zinc-100 dark:border-zinc-800 overflow-x-auto">
+            {seq.emails.map((email, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveEmail(i)}
+                className={`flex-shrink-0 px-5 py-3 text-sm font-medium border-r border-zinc-100 dark:border-zinc-800 last:border-r-0 transition-colors ${
+                  activeEmail === i
+                    ? "bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-white"
+                    : "text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300"
+                }`}
+              >
+                <div className="text-xs font-mono opacity-50 mb-0.5">{email.delay}</div>
+                {email.name}
+              </button>
+            ))}
+          </div>
+
+          <div className="p-6 grid sm:grid-cols-2 gap-6">
+            {/* Email mockup */}
+            <div>
+              <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">Email Preview</p>
+              <div className="rounded-xl border border-zinc-200 dark:border-zinc-700 overflow-hidden text-sm">
+                <div className="bg-zinc-50 dark:bg-zinc-900 px-4 py-3 border-b border-zinc-100 dark:border-zinc-800">
+                  <p className="font-semibold text-zinc-800 dark:text-zinc-200 mb-1">{email.subject}</p>
+                  <p className="text-xs text-zinc-400">From: LawConnect · {email.delay} after trigger</p>
+                </div>
+                <div className="p-4 bg-white dark:bg-zinc-950 space-y-3 text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                  {email.body.split("\n\n").map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
+                  <div className="rounded-lg bg-violet-600 text-white text-xs font-semibold text-center py-2 mt-2">{email.cta}</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Metadata */}
+            <div className="space-y-4">
+              <div>
+                <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">Details</p>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between"><span className="text-zinc-400">Send delay</span><span className="font-medium text-zinc-700 dark:text-zinc-300">{email.delay}</span></div>
+                  <div className="flex justify-between"><span className="text-zinc-400">Channel</span><span className="font-medium text-zinc-700 dark:text-zinc-300">{email.channel}</span></div>
+                  <div className="flex justify-between"><span className="text-zinc-400">Primary CTA</span><span className="font-medium text-zinc-700 dark:text-zinc-300">{email.cta}</span></div>
+                </div>
+              </div>
+              {email.rationale && (
+                <div className="rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-100 dark:border-amber-900 p-4">
+                  <p className="text-xs font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-2">Why this works</p>
+                  <p className="text-xs text-amber-700 dark:text-amber-300 leading-relaxed">{email.rationale}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Current state audit — moved to bottom as context */}
+      <div>
+        <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-4">Current State — What Actually Fires Today</p>
         <div className="space-y-4">
           {currentCommsAudit.received.map((item) => (
             <div key={item.label} className="rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
@@ -1152,202 +1261,6 @@ function EmailSection() {
         </div>
       </div>
 
-      {/* Proposed sequences */}
-      <div>
-        <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-1">Proposed Sequences</p>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-5">
-          4 automated sequences covering the full lifecycle. Each email includes the fix rationale — what it replaces or adds.
-        </p>
-
-        {/* Sequence selector */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {proposedSequences.map((s, i) => (
-            <button
-              key={s.id}
-              onClick={() => { setActiveSeq(i); setActiveEmail(0); }}
-              className={`rounded-xl px-4 py-2.5 text-sm font-medium border transition-colors text-left ${
-                activeSeq === i ? SEQ_ACTIVE[s.color] : SEQ_COLORS[s.color]
-              }`}
-            >
-              <div className="font-semibold">{s.name}</div>
-              <div className="text-[11px] opacity-70 mt-0.5">Trigger: {s.trigger}</div>
-            </button>
-          ))}
-        </div>
-
-        {/* Sequence detail */}
-        <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
-          {/* Sequence header */}
-          <div className="px-5 py-4 bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-100 dark:border-zinc-800 flex flex-wrap gap-4 text-xs text-zinc-500">
-            <span><span className="font-semibold text-zinc-700 dark:text-zinc-300">Trigger:</span> {seq.trigger}</span>
-            <span><span className="font-semibold text-zinc-700 dark:text-zinc-300">Goal:</span> {seq.goal}</span>
-            <span><span className="font-semibold text-zinc-700 dark:text-zinc-300">Touchpoints:</span> {seq.emails.length}</span>
-          </div>
-
-          {/* Email selector tabs */}
-          <div className="flex border-b border-zinc-100 dark:border-zinc-800">
-            {seq.emails.map((e, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveEmail(i)}
-                className={`flex-1 px-4 py-3 text-xs font-medium transition-colors border-b-2 ${
-                  activeEmail === i
-                    ? "border-zinc-900 dark:border-white text-zinc-900 dark:text-white"
-                    : "border-transparent text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300"
-                }`}
-              >
-                <div className="font-semibold">{e.channel} {e.num}</div>
-                <div className="opacity-60 mt-0.5">{e.timing}</div>
-              </button>
-            ))}
-          </div>
-
-          {/* Email detail */}
-          <div className="p-5 grid sm:grid-cols-2 gap-5">
-            {/* Mockup */}
-            <div>
-              <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">
-                {email.channel === "SMS" ? "SMS Preview" : "Email Preview"}
-              </p>
-              {email.channel === "SMS" ? (
-                <div className="rounded-xl bg-zinc-900 p-4 max-w-xs">
-                  <div className="text-xs text-zinc-400 mb-2">LawConnect</div>
-                  <div className="rounded-2xl rounded-tl-sm bg-zinc-700 px-4 py-3 text-sm text-white leading-relaxed">
-                    {email.body}
-                  </div>
-                  <div className="mt-3 rounded-xl bg-blue-500 text-white text-xs font-medium text-center py-2">
-                    {email.cta}
-                  </div>
-                </div>
-              ) : (
-                <div className="rounded-xl border border-zinc-200 dark:border-zinc-700 overflow-hidden text-xs">
-                  <div className="bg-zinc-50 dark:bg-zinc-900 px-3 py-2 border-b border-zinc-100 dark:border-zinc-800">
-                    <div className="flex items-center gap-2 mb-1">
-                      <div className="w-3 h-3 rounded-full bg-blue-500" />
-                      <span className="font-semibold text-zinc-700 dark:text-zinc-300">LawConnect</span>
-                    </div>
-                    <p className="font-semibold text-zinc-800 dark:text-zinc-200">{email.subject}</p>
-                    <p className="text-zinc-400 text-[10px] mt-0.5">{email.preview}</p>
-                  </div>
-                  <div className="p-3 bg-white dark:bg-zinc-950 space-y-2">
-                    {email.body.split("\n\n").map((para, i) => (
-                      <p key={i} className="text-[11px] text-zinc-600 dark:text-zinc-400 leading-relaxed">{para}</p>
-                    ))}
-                    <div className="mt-3 rounded-lg bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-[11px] font-semibold text-center py-2">
-                      {email.cta}
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Analysis */}
-            <div className="space-y-4">
-              <div>
-                <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2">Why This Email</p>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{email.fix}</p>
-              </div>
-              <div className="rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 p-3 space-y-2 text-xs">
-                <div className="flex justify-between"><span className="text-zinc-400">Channel</span><span className="font-medium text-zinc-700 dark:text-zinc-300">{email.channel}</span></div>
-                <div className="flex justify-between"><span className="text-zinc-400">Send timing</span><span className="font-medium text-zinc-700 dark:text-zinc-300">{email.timing}</span></div>
-                <div className="flex justify-between"><span className="text-zinc-400">Primary CTA</span><span className="font-medium text-zinc-700 dark:text-zinc-300">{email.cta}</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function MatrixSection() {
-  const CATEGORY_COLORS: Record<string, string> = {
-    CRO: "bg-violet-100 text-violet-700 dark:bg-violet-950 dark:text-violet-400",
-    SEO: "bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-400",
-    Paid: "bg-orange-100 text-orange-700 dark:bg-orange-950 dark:text-orange-400",
-    Email: "bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400",
-    Growth: "bg-pink-100 text-pink-700 dark:bg-pink-950 dark:text-pink-400",
-    Expansion: "bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-400",
-    Brand: "bg-zinc-100 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400",
-    Product: "bg-zinc-100 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400",
-  };
-
-  const quadrants = [
-    {
-      label: "Do First",
-      sublabel: "High impact · Low effort",
-      bg: "bg-emerald-50 dark:bg-emerald-950/20 border-emerald-200 dark:border-emerald-900",
-      header: "text-emerald-700 dark:text-emerald-400",
-      items: growthInitiatives.filter((i) => i.impact >= 65 && i.effort <= 40),
-    },
-    {
-      label: "Plan & Schedule",
-      sublabel: "High impact · High effort",
-      bg: "bg-blue-50 dark:bg-blue-950/20 border-blue-200 dark:border-blue-900",
-      header: "text-blue-700 dark:text-blue-400",
-      items: growthInitiatives.filter((i) => i.impact >= 65 && i.effort > 40),
-    },
-    {
-      label: "Fill-ins",
-      sublabel: "Low impact · Low effort",
-      bg: "bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800",
-      header: "text-zinc-500",
-      items: growthInitiatives.filter((i) => i.impact < 65 && i.effort <= 40),
-    },
-    {
-      label: "Avoid for Now",
-      sublabel: "Low impact · High effort",
-      bg: "bg-red-50 dark:bg-red-950/20 border-red-200 dark:border-red-900",
-      header: "text-red-500",
-      items: growthInitiatives.filter((i) => i.impact < 65 && i.effort > 40),
-    },
-  ];
-
-  return (
-    <div>
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold tracking-tight mb-1">Growth Matrix — Impact vs Effort</h2>
-        <p className="text-sm font-medium text-amber-600 dark:text-amber-400 mb-2">13 initiatives prioritised — start top-left, build top-right, ignore the rest</p>
-        <p className="text-zinc-500 dark:text-zinc-400 text-sm">
-          13 growth initiatives mapped by expected impact and implementation effort. Start top-left, plan top-right, deprioritise the rest.
-        </p>
-      </div>
-
-      <div className="grid sm:grid-cols-2 gap-4">
-        {quadrants.map((q) => (
-          <div key={q.label} className={`rounded-2xl border p-5 ${q.bg}`}>
-            <div className={`font-bold text-sm mb-0.5 ${q.header}`}>{q.label}</div>
-            <div className="text-xs text-zinc-400 mb-4">{q.sublabel}</div>
-            <div className="space-y-3">
-              {q.items.map((item) => (
-                <div key={item.id} className="rounded-xl bg-white dark:bg-zinc-950 border border-zinc-100 dark:border-zinc-800 p-3">
-                  <div className="flex items-start justify-between gap-2 mb-1">
-                    <p className="font-semibold text-sm">{item.name}</p>
-                    <span className={`text-xs px-2 py-0.5 rounded-full font-medium shrink-0 ${CATEGORY_COLORS[item.category]}`}>
-                      {item.category}
-                    </span>
-                  </div>
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400">{item.description}</p>
-                  <div className="flex gap-3 mt-2">
-                    <div className="flex items-center gap-1">
-                      <span className="text-xs text-zinc-400">Impact</span>
-                      <div className="w-16 h-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden">
-                        <div className="h-full rounded-full bg-indigo-400" style={{ width: `${item.impact}%` }} />
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <span className="text-xs text-zinc-400">Effort</span>
-                      <div className="w-16 h-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden">
-                        <div className="h-full rounded-full bg-zinc-400" style={{ width: `${item.effort}%` }} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   );
 }
@@ -1432,7 +1345,6 @@ export default function AuditPage() {
           {active === "seo" && <SEOSection />}
           {active === "campaign" && <CampaignSection />}
           {active === "email" && <EmailSection />}
-          {active === "matrix" && <MatrixSection />}
           {active === "plan" && <PlanSection />}
         </main>
       </div>
