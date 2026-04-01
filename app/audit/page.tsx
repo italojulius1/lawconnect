@@ -177,15 +177,15 @@ function OverviewSection({ setActive }: { setActive: (s: Section) => void }) {
       nav: "funnel" as Section,
       color: "border-violet-200 dark:border-violet-900 bg-violet-50 dark:bg-violet-950/20",
       badge: "bg-violet-100 dark:bg-violet-950 text-violet-700 dark:text-violet-400",
-      title: "Strong funnel with clear conversion upside",
-      body: "The core product works well — the opportunity is in small UX refinements at each stage. Single CTA on landing, guided input in the AI, and a surfaced lawyer CTA in the report. All low effort, meaningful lift.",
+      title: "Funnel CRO — room to lift conversion at every stage",
+      body: "The product is solid — the opportunity is in small UX refinements at each step. Single CTA on landing, guided input in the AI, lawyer match surfaced in the report. All low effort, meaningful lift.",
       cta: "See Funnel CRO →",
     },
     {
       nav: "seo" as Section,
       color: "border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950/20",
       badge: "bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-400",
-      title: "Existing SEO foundation with significant room to grow",
+      title: "SEO — strong base with high-volume gaps to close",
       body: "LawConnect already ranks for core practice areas in major cities. The opportunity is in the gaps — high-volume searches like Sydney Immigration, Perth Mining Injury, and Canberra Employment with no competing page yet.",
       cta: "See SEO Gap Map →",
     },
@@ -193,7 +193,7 @@ function OverviewSection({ setActive }: { setActive: (s: Section) => void }) {
       nav: "campaign" as Section,
       color: "border-pink-200 dark:border-pink-900 bg-pink-50 dark:bg-pink-950/20",
       badge: "bg-pink-100 dark:bg-pink-950 text-pink-700 dark:text-pink-400",
-      title: "The AI tool is a genuine competitive advantage",
+      title: "Paid & organic — lead with AI, convert warmer",
       body: "LawConnect already has something most legal directories don't — an AI that answers legal questions for free. Leading with that in paid and organic channels attracts users earlier in the journey and converts them warmer.",
       cta: "See Campaign Flow →",
     },
@@ -201,24 +201,10 @@ function OverviewSection({ setActive }: { setActive: (s: Section) => void }) {
       nav: "email" as Section,
       color: "border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/20",
       badge: "bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400",
-      title: "Quick win: close the loop after the AI report",
+      title: "Email & SMS — close the loop after the AI report",
       body: "Users who get an AI report are already engaged and qualified. A simple follow-up sequence — connecting their query to a matched lawyer — is a high-leverage, low-effort retention play that currently doesn't exist.",
       cta: "See Email & SMS →",
     },
-  ];
-
-  const findings = [
-    { label: "Strong funnel", detail: "Core product works — users land, engage with AI, and connect with lawyers" },
-    { label: "Good SEO base", detail: "Already ranking for core practice areas across major cities" },
-    { label: "Differentiated AI tool", detail: "Free legal AI is a genuine moat vs. traditional lawyer directories" },
-    { label: "Engaged user base", detail: "Users who complete the AI report are qualified and high-intent" },
-  ];
-
-  const changes = [
-    { label: "Simplify the funnel", detail: "One CTA on landing, guided AI input, lawyer match surfaced in the report" },
-    { label: "Fill SEO gaps", detail: "High-volume city × practice area pages that don't exist yet — Sydney Immigration, Perth Injury, Canberra Employment" },
-    { label: "Lead with AI in paid", detail: "'Free legal answer' beats 'find a lawyer' for cold traffic — lower CPC, warmer conversion" },
-    { label: "Follow up after the AI report", detail: "A 2-step sequence connecting users to a matched lawyer is the highest-leverage quick win" },
   ];
 
   return (
@@ -230,38 +216,21 @@ function OverviewSection({ setActive }: { setActive: (s: Section) => void }) {
         </p>
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-5">
-        {/* What we found */}
-        <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/20 p-5">
-          <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-4">What we found</p>
-          <div className="space-y-3">
-            {findings.map((f) => (
-              <div key={f.label} className="flex items-start gap-2.5">
-                <span className="text-emerald-500 mt-0.5 shrink-0 text-sm">✓</span>
-                <div>
-                  <span className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">{f.label} </span>
-                  <span className="text-sm text-zinc-500 dark:text-zinc-400">— {f.detail}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* What to change */}
-        <div className="rounded-2xl border border-violet-200 dark:border-violet-900 bg-violet-50 dark:bg-violet-950/20 p-5">
-          <p className="text-xs font-semibold text-violet-600 dark:text-violet-400 uppercase tracking-wider mb-4">What to change</p>
-          <div className="space-y-3">
-            {changes.map((c, i) => (
-              <button key={c.label} onClick={() => setActive(insights[i].nav)} className="flex items-start gap-2.5 w-full text-left group">
-                <span className="text-violet-400 mt-0.5 shrink-0 text-sm">→</span>
-                <div>
-                  <span className="text-sm font-semibold text-zinc-800 dark:text-zinc-200 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">{c.label} </span>
-                  <span className="text-sm text-zinc-500 dark:text-zinc-400">— {c.detail}</span>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
+      <div className="grid sm:grid-cols-2 gap-4">
+        {insights.map((ins) => (
+          <button
+            key={ins.nav}
+            onClick={() => setActive(ins.nav)}
+            className={`text-left rounded-2xl border p-5 transition-all hover:shadow-sm ${ins.color}`}
+          >
+            <span className={`inline-block text-xs font-medium px-2 py-0.5 rounded-full mb-3 ${ins.badge}`}>
+              {NAV.find(n => n.id === ins.nav)?.label}
+            </span>
+            <h3 className="font-semibold text-zinc-900 dark:text-white text-sm mb-2 leading-snug">{ins.title}</h3>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed mb-3">{ins.body}</p>
+            <span className="text-xs font-medium text-zinc-400 dark:text-zinc-500">{ins.cta}</span>
+          </button>
+        ))}
       </div>
 
       <div className="rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 p-5">
