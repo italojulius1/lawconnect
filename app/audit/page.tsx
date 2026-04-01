@@ -495,6 +495,7 @@ function CampaignSection() {
     violet: "from-violet-500 to-indigo-600",
     pink: "from-pink-500 to-rose-600",
     blue: "from-blue-500 to-cyan-600",
+    emerald: "from-emerald-500 to-teal-600",
   };
 
   const FLOW_ICONS: Record<string, string> = {
@@ -770,7 +771,7 @@ function CampaignSection() {
       {/* Social Ads */}
       <div>
         <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-4">Social Ad Examples</p>
-        <div className="grid sm:grid-cols-3 gap-4">
+        <div className="grid sm:grid-cols-2 gap-4">
           {socialAds.map((ad) => (
             <div key={ad.hook} className="rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
               {/* Ad creative */}
@@ -796,8 +797,8 @@ function CampaignSection() {
                   <span className="text-zinc-400">Est. CPL</span>
                   <span className="text-emerald-600 dark:text-emerald-400 font-semibold">{ad.estimatedCPL}</span>
                 </div>
-                <div className="pt-1 border-t border-zinc-100 dark:border-zinc-800">
-                  <p className="text-xs text-zinc-400 italic">{ad.intent}</p>
+                <div className="pt-2 border-t border-zinc-100 dark:border-zinc-800">
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">{ad.insight}</p>
                 </div>
               </div>
             </div>
