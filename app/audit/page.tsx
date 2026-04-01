@@ -3,15 +3,16 @@
 import { useState } from "react";
 import { funnelStages, cities, practiceAreas, seoGrid, growthInitiatives, socialAds, semAds, pageComparison, aiFlowSteps, seoOpportunities, currentCommsAudit, proposedSequences, ninetyDayPlan } from "./data";
 
-type Section = "plan" | "campaign" | "funnel" | "seo" | "email" | "matrix";
+type Section = "overview" | "funnel" | "seo" | "campaign" | "email" | "matrix" | "plan";
 
 const NAV: { id: Section; label: string; description: string }[] = [
+  { id: "overview", label: "Overview", description: "Thesis · 4 core insights" },
+  { id: "funnel", label: "Funnel CRO", description: "Trust breaks down at 4 stages" },
+  { id: "seo", label: "SEO Gap Map", description: "Free revenue sitting untapped" },
+  { id: "campaign", label: "Campaign Flow", description: "AI as the acquisition hook" },
+  { id: "email", label: "Email & SMS", description: "Warm leads being wasted" },
+  { id: "matrix", label: "Growth Matrix", description: "What to do first" },
   { id: "plan", label: "90-Day Plan", description: "First 90 days" },
-  { id: "campaign", label: "Campaign Flow", description: "AI hook · ads · page mockups" },
-  { id: "funnel", label: "Funnel CRO", description: "Stage-by-stage analysis" },
-  { id: "seo", label: "SEO Gap Map", description: "City × practice area coverage" },
-  { id: "email", label: "Email & SMS", description: "Current gaps + full sequence" },
-  { id: "matrix", label: "Growth Matrix", description: "Impact vs effort priorities" },
 ];
 
 const EFFORT_COLORS: Record<string, string> = {
@@ -171,6 +172,79 @@ function StageScreen({ type }: { type: string }) {
   return null;
 }
 
+function OverviewSection({ setActive }: { setActive: (s: Section) => void }) {
+  const insights = [
+    {
+      nav: "funnel" as Section,
+      color: "border-violet-200 dark:border-violet-900 bg-violet-50 dark:bg-violet-950/20",
+      badge: "bg-violet-100 dark:bg-violet-950 text-violet-700 dark:text-violet-400",
+      title: "The funnel leaks trust at every step",
+      body: "Dual CTAs on landing, a blank text box in the AI, and the lawyer CTA buried at the bottom of the report. Each stage loses users that should convert — and all fixes are low effort.",
+      cta: "See Funnel CRO →",
+    },
+    {
+      nav: "seo" as Section,
+      color: "border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950/20",
+      badge: "bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-400",
+      title: "Free revenue sitting on the table",
+      body: "High-intent city × practice area searches — Sydney Immigration, Perth Mining Injury, Canberra Employment — driving thousands of monthly searches with zero LawConnect page competing.",
+      cta: "See SEO Gap Map →",
+    },
+    {
+      nav: "campaign" as Section,
+      color: "border-pink-200 dark:border-pink-900 bg-pink-50 dark:bg-pink-950/20",
+      badge: "bg-pink-100 dark:bg-pink-950 text-pink-700 dark:text-pink-400",
+      title: "AI is the moat — use it as the hook",
+      body: "LawConnect's AI tool is genuinely differentiated vs. traditional legal directories. Stop selling lawyer access upfront. Lead with free answers, earn trust, then convert. Users arrive warmer.",
+      cta: "See Campaign Flow →",
+    },
+    {
+      nav: "email" as Section,
+      color: "border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/20",
+      badge: "bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400",
+      title: "Email & SMS is completely untapped",
+      body: "Users who complete the AI report but don't connect with a lawyer are a warm audience being wasted. A simple 2-step re-engagement sequence could recover a meaningful percentage with minimal build.",
+      cta: "See Email & SMS →",
+    },
+  ];
+
+  return (
+    <div className="space-y-10">
+      <div>
+        <div className="flex items-center gap-3 mb-2">
+          <h2 className="text-2xl font-bold tracking-tight">Growth Audit — LawConnect</h2>
+        </div>
+        <p className="text-zinc-500 dark:text-zinc-400 text-sm max-w-2xl">
+          An independent audit covering consumer funnel CRO, SEO coverage gaps, campaign strategy, lifecycle email, and a prioritised growth matrix — built before the first conversation.
+        </p>
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-4">
+        {insights.map((ins) => (
+          <button
+            key={ins.nav}
+            onClick={() => setActive(ins.nav)}
+            className={`text-left rounded-2xl border p-5 transition-all hover:shadow-sm ${ins.color}`}
+          >
+            <span className={`inline-block text-xs font-medium px-2 py-0.5 rounded-full mb-3 ${ins.badge}`}>
+              {NAV.find(n => n.id === ins.nav)?.label}
+            </span>
+            <h3 className="font-semibold text-zinc-900 dark:text-white text-sm mb-2 leading-snug">{ins.title}</h3>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed mb-3">{ins.body}</p>
+            <span className="text-xs font-medium text-zinc-400 dark:text-zinc-500">{ins.cta}</span>
+          </button>
+        ))}
+      </div>
+
+      <div className="rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 p-6">
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          <span className="font-semibold text-zinc-700 dark:text-zinc-300">The through-line:</span> Legal is high anxiety, high cost, high stakes. Every insight here comes back to one thing — reducing fear before asking for commitment. That's the lens applied across every section of this audit.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 function FunnelSection() {
   const [activeStage, setActiveStage] = useState(0);
   const stage = funnelStages[activeStage];
@@ -178,7 +252,8 @@ function FunnelSection() {
   return (
     <div>
       <div className="mb-8">
-        <h2 className="text-2xl font-bold tracking-tight mb-2">Consumer Funnel — CRO Analysis</h2>
+        <h2 className="text-2xl font-bold tracking-tight mb-1">Consumer Funnel — CRO Analysis</h2>
+        <p className="text-sm font-medium text-violet-600 dark:text-violet-400 mb-2">Trust breaks down at 4 stages — all fixable with low effort</p>
         <p className="text-zinc-500 dark:text-zinc-400 text-sm">
           4-stage breakdown with before/after mockups, friction analysis, and A/B test hypotheses for each step.
         </p>
@@ -275,7 +350,8 @@ function SEOSection() {
   return (
     <div>
       <div className="mb-8">
-        <h2 className="text-2xl font-bold tracking-tight mb-2">Programmatic SEO — Coverage Map</h2>
+        <h2 className="text-2xl font-bold tracking-tight mb-1">Programmatic SEO — Coverage Map</h2>
+        <p className="text-sm font-medium text-blue-600 dark:text-blue-400 mb-2">High-intent searches with zero LawConnect page competing — free revenue untapped</p>
         <p className="text-zinc-500 dark:text-zinc-400 text-sm">
           LawConnect URL structure: <code className="text-xs bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded">/en-au/find/[practice-area]/[state]/[city]</code>.
           Every gap is a missing page for a real, high-intent search query.
@@ -443,7 +519,8 @@ function CampaignSection() {
   return (
     <div className="space-y-14">
       <div>
-        <h2 className="text-2xl font-bold tracking-tight mb-2">Campaign Flow — AI as the Hook</h2>
+        <h2 className="text-2xl font-bold tracking-tight mb-1">Campaign Flow — AI as the Hook</h2>
+        <p className="text-sm font-medium text-pink-600 dark:text-pink-400 mb-2">Stop selling lawyer access — lead with free answers, arrive warmer, convert higher</p>
         <p className="text-zinc-500 dark:text-zinc-400 text-sm max-w-2xl">
           The core strategic shift: stop selling lawyer access. Start giving free legal answers. The AI tool becomes the acquisition hook across SEM, social, and retargeting — converting warmer because users arrive having already gotten value.
         </p>
@@ -745,7 +822,8 @@ function PlanSection() {
       {/* Header */}
       <div>
         <div className="flex items-center gap-3 mb-2">
-          <h2 className="text-2xl font-bold tracking-tight">My First 90 Days</h2>
+          <h2 className="text-2xl font-bold tracking-tight mb-1">My First 90 Days</h2>
+          <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400 mb-1">Diagnose before acting · ship quick wins · scale what works</p>
           <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500">Head of Growth · LawConnect</span>
         </div>
         <p className="text-zinc-500 dark:text-zinc-400 text-sm max-w-2xl">
@@ -905,7 +983,8 @@ function EmailSection() {
   return (
     <div className="space-y-12">
       <div>
-        <h2 className="text-2xl font-bold tracking-tight mb-2">Email & SMS — Current State & Strategy</h2>
+        <h2 className="text-2xl font-bold tracking-tight mb-1">Email & SMS — Current State & Strategy</h2>
+        <p className="text-sm font-medium text-emerald-600 dark:text-emerald-400 mb-2">Warm leads from the AI report are dropping off with no follow-up — completely untapped</p>
         <p className="text-zinc-500 dark:text-zinc-400 text-sm max-w-2xl">
           Based on a real user journey through LawConnect — account creation, AI chat, and enquiry abandonment. This shows exactly what fired, what broke, and what was never sent.
         </p>
@@ -1161,7 +1240,8 @@ function MatrixSection() {
   return (
     <div>
       <div className="mb-8">
-        <h2 className="text-2xl font-bold tracking-tight mb-2">Growth Matrix — Impact vs Effort</h2>
+        <h2 className="text-2xl font-bold tracking-tight mb-1">Growth Matrix — Impact vs Effort</h2>
+        <p className="text-sm font-medium text-amber-600 dark:text-amber-400 mb-2">13 initiatives prioritised — start top-left, build top-right, ignore the rest</p>
         <p className="text-zinc-500 dark:text-zinc-400 text-sm">
           13 growth initiatives mapped by expected impact and implementation effort. Start top-left, plan top-right, deprioritise the rest.
         </p>
@@ -1207,7 +1287,7 @@ function MatrixSection() {
 }
 
 export default function AuditPage() {
-  const [active, setActive] = useState<Section>("plan");
+  const [active, setActive] = useState<Section>("overview");
 
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white">
@@ -1281,12 +1361,13 @@ export default function AuditPage() {
 
         {/* Main content */}
         <main className="flex-1 min-w-0">
-          {active === "plan" && <PlanSection />}
-          {active === "campaign" && <CampaignSection />}
+          {active === "overview" && <OverviewSection setActive={setActive} />}
           {active === "funnel" && <FunnelSection />}
           {active === "seo" && <SEOSection />}
+          {active === "campaign" && <CampaignSection />}
           {active === "email" && <EmailSection />}
           {active === "matrix" && <MatrixSection />}
+          {active === "plan" && <PlanSection />}
         </main>
       </div>
 
