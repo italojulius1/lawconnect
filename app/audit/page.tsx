@@ -296,27 +296,68 @@ function FunnelSection() {
         {/* Description */}
         <p className="text-sm text-zinc-500 dark:text-zinc-400">{stage.description}</p>
 
-        {/* Before / After mockups */}
-        <div className="grid sm:grid-cols-2 gap-4">
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-xs font-semibold text-red-500 uppercase tracking-wider">Before</span>
+        {/* Before / After mockups — or inspiration card for Guide stage */}
+        {stage.id === "guide" ? (
+          <div className="space-y-4">
+            <div className="rounded-xl bg-red-50 dark:bg-red-950/20 border border-red-100 dark:border-red-900 px-4 py-3">
+              <p className="text-xs font-semibold text-red-500 uppercase tracking-wider mb-1">Current state</p>
+              <p className="text-sm text-zinc-700 dark:text-zinc-300">{stage.before.issue}</p>
             </div>
-            <StageScreen type={stage.before.screen.type} />
-            <div className="mt-2 rounded-xl bg-red-50 dark:bg-red-950/20 border border-red-100 dark:border-red-900 px-3 py-2">
-              <p className="text-xs text-red-600 dark:text-red-400">{stage.before.issue}</p>
+
+            <div className="rounded-xl overflow-hidden border border-blue-200 dark:border-blue-900">
+              <div className="bg-[#1a73e8] px-4 py-3 flex items-center gap-2">
+                <div className="w-4 h-4 rounded-sm bg-white/20 flex items-center justify-center">
+                  <span className="text-white text-[8px] font-bold">G</span>
+                </div>
+                <span className="text-white text-xs font-medium">Grow with Google — Career Dreamer</span>
+                <span className="ml-auto text-blue-200 text-[10px]">grow.google/career-dreamer</span>
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-950/20 px-4 py-4 space-y-3">
+                <p className="text-xs font-semibold text-zinc-600 dark:text-zinc-300 uppercase tracking-wider">Inspiration reference</p>
+                <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                  Career Dreamer guides users from a blank-slate question to a personalised AI career plan — using chip-by-chip selection, one question per step, with zero free text at the start. The output feels specific to you because you shaped it by choosing, not typing.
+                </p>
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {["Select your background", "Pick your interests", "AI generates your path"].map((step, i) => (
+                    <div key={step} className="flex items-center gap-1.5 rounded-full bg-white dark:bg-blue-950 border border-blue-200 dark:border-blue-800 px-3 py-1">
+                      <span className="text-[10px] font-mono text-blue-400">{i + 1}</span>
+                      <span className="text-[10px] text-zinc-600 dark:text-zinc-400">{step}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 border-t border-blue-100 dark:border-blue-900 pt-3">
+                  <span className="font-semibold text-zinc-700 dark:text-zinc-300">Applied to LawConnect:</span> "What area of law affects you?" → "What's your situation?" → instant AI legal insight. Same guided logic, built for legal problems.
+                </p>
+              </div>
+            </div>
+
+            <div className="rounded-xl bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900 px-4 py-3">
+              <p className="text-xs font-semibold text-emerald-600 uppercase tracking-wider mb-1">Why it works</p>
+              <p className="text-sm text-zinc-700 dark:text-zinc-300">{stage.after.fix}</p>
             </div>
           </div>
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-xs font-semibold text-emerald-600 uppercase tracking-wider">After</span>
+        ) : (
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xs font-semibold text-red-500 uppercase tracking-wider">Before</span>
+              </div>
+              <StageScreen type={stage.before.screen.type} />
+              <div className="mt-2 rounded-xl bg-red-50 dark:bg-red-950/20 border border-red-100 dark:border-red-900 px-3 py-2">
+                <p className="text-xs text-red-600 dark:text-red-400">{stage.before.issue}</p>
+              </div>
             </div>
-            <StageScreen type={stage.after.screen.type} />
-            <div className="mt-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900 px-3 py-2">
-              <p className="text-xs text-emerald-600 dark:text-emerald-400">{stage.after.fix}</p>
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xs font-semibold text-emerald-600 uppercase tracking-wider">After</span>
+              </div>
+              <StageScreen type={stage.after.screen.type} />
+              <div className="mt-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900 px-3 py-2">
+                <p className="text-xs text-emerald-600 dark:text-emerald-400">{stage.after.fix}</p>
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* Friction */}
         <div className="rounded-xl bg-red-50 dark:bg-red-950/30 border border-red-100 dark:border-red-900 px-4 py-3">
