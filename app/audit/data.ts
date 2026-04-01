@@ -1,44 +1,10 @@
 export const funnelStages = [
   {
-    id: "landing",
-    stage: "01",
-    name: "Landing",
-    description: "Hero page — first impression for all traffic",
-    friction: "Split intent creates decision paralysis. Two equal CTAs force a choice before users understand the product, increasing bounce.",
-    tests: [
-      {
-        hypothesis: "Replace dual CTAs with one primary CTA ('Get free legal help') and a secondary text link",
-        expectedLift: "+18% first interaction",
-        effort: "Low",
-      },
-      {
-        hypothesis: "Embed a 'What's your legal issue?' input directly in the hero — skip the click entirely",
-        expectedLift: "+22% engagement rate",
-        effort: "Medium",
-      },
-    ],
-    quickWin: "Move the 4.8★ / 35,858 reviews badge directly under the primary CTA — it's buried now.",
-    before: {
-      label: "Current",
-      issue: "Dual CTAs split intent. 'Find a lawyer' implies cost before trust is built.",
-      screen: {
-        type: "landing-before",
-      },
-    },
-    after: {
-      label: "Proposed",
-      fix: "Single primary CTA leading with the free AI. Trust signal reinforces zero cost.",
-      screen: {
-        type: "landing-after",
-      },
-    },
-  },
-  {
     id: "engage",
-    stage: "02",
+    stage: "01",
     name: "Engage",
     description: "AI chat — user describes their legal issue",
-    friction: "Open text input intimidates users who don't know how to phrase a legal problem. Most people don't speak in legal terms.",
+    friction: "Open text input intimidates users who don't know how to phrase a legal problem. Most people don't speak in legal terms — a blank box with no guidance is a high-abandonment moment.",
     tests: [
       {
         hypothesis: "Show practice area chips first ('Family', 'Employment', 'Property'...) before the open text box",
@@ -50,6 +16,11 @@ export const funnelStages = [
         expectedLift: "+15% start rate",
         effort: "Low",
       },
+      {
+        hypothesis: "Add a progress indicator ('~2 min to your report') at the top of the input screen",
+        expectedLift: "+12% completion rate",
+        effort: "Low",
+      },
     ],
     quickWin: "Add a progress indicator ('~2 min to your report') — uncertainty about time is a top abandonment driver.",
     before: {
@@ -59,16 +30,16 @@ export const funnelStages = [
     },
     after: {
       label: "Proposed",
-      fix: "Practice area chips narrow context first. Example prompt removes the blank-page problem.",
+      fix: "Practice area chips narrow context first. Example prompt removes the blank-page problem. Progress bar reduces anxiety.",
       screen: { type: "engage-after" },
     },
   },
   {
     id: "report",
-    stage: "03",
+    stage: "02",
     name: "Report",
     description: "AI generates a personalised legal summary",
-    friction: "The report feels like the destination, not a step in a journey. Users read it and leave without taking next action.",
+    friction: "The report feels like the destination, not a step in a journey. Users read it and leave — the next action isn't clear or compelling enough to act on immediately.",
     tests: [
       {
         hypothesis: "Pin a 'What should I do next?' CTA to the top of the report before the body content",
@@ -80,8 +51,13 @@ export const funnelStages = [
         expectedLift: "+20% connection rate",
         effort: "High",
       },
+      {
+        hypothesis: "Add a plain-English summary section at the top: 3 bullet points of 'what this means for you'",
+        expectedLift: "+18% time on page and CTA engagement",
+        effort: "Medium",
+      },
     ],
-    quickWin: "Add scarcity framing near the lawyer CTA: '4 lawyers in Sydney available for this matter today'.",
+    quickWin: "Surface the next step ('Talk to a matched lawyer') at the top of the report — before the user reads the full output, not after.",
     before: {
       label: "Current",
       issue: "Lawyer CTA buried at the bottom after a long report. Most users never scroll that far.",
@@ -89,38 +65,42 @@ export const funnelStages = [
     },
     after: {
       label: "Proposed",
-      fix: "Next-step CTA pinned at the top. Lawyer profiles appear inline next to the relevant section.",
+      fix: "Plain-English summary at the top. Next-step CTA pinned above the fold. Lawyer profiles matched inline to the relevant section of the report.",
       screen: { type: "report-after" },
     },
   },
   {
-    id: "convert",
-    stage: "04",
-    name: "Convert",
-    description: "User requests a quote or connects with a lawyer",
-    friction: "No expectation setting after submission — users don't know what happens next or when, eroding trust at the last step.",
+    id: "landing",
+    stage: "03",
+    name: "Landing",
+    description: "Hero page — first impression for all traffic",
+    friction: "The hero leads with the lawyer directory rather than the free AI tool. For cold traffic, this implies cost and commitment before any trust has been built.",
     tests: [
       {
-        hypothesis: "Add 'Expect a response within 2 hours' directly beside the submit button",
-        expectedLift: "+20% submit rate",
+        hypothesis: "Lead the hero with the free AI offer — 'Get a free legal answer in 2 minutes' as the primary CTA",
+        expectedLift: "+18% AI chat starts from homepage",
         effort: "Low",
       },
       {
-        hypothesis: "Pre-fill a message template based on the user's report so they don't have to write from scratch",
-        expectedLift: "+15% completion rate",
+        hypothesis: "Embed a 'What's your legal issue?' input directly in the hero — skip the click entirely",
+        expectedLift: "+22% engagement rate",
         effort: "Medium",
       },
     ],
-    quickWin: "Add 'No obligation — lawyers reach out to you first' below the CTA. Removes the fear of being sold to.",
+    quickWin: "Move the 4.8★ / 35,858 reviews badge directly under the primary CTA — social proof should reinforce the action, not sit separately.",
     before: {
       label: "Current",
-      issue: "Generic blank message box. No timeline. No reassurance. High drop-off at the last step.",
-      screen: { type: "convert-before" },
+      issue: "Hero leads with the lawyer marketplace. Implies cost and commitment before the user understands the product.",
+      screen: {
+        type: "landing-before",
+      },
     },
     after: {
       label: "Proposed",
-      fix: "Pre-filled message from report context. Response time guarantee. No-obligation copy removes fear.",
-      screen: { type: "convert-after" },
+      fix: "Lead with the free AI offer. Single clear CTA. Trust signal reinforces zero cost, zero obligation.",
+      screen: {
+        type: "landing-after",
+      },
     },
   },
 ];
