@@ -7,10 +7,10 @@ type Section = "overview" | "funnel" | "seo" | "campaign" | "email" | "matrix" |
 
 const NAV: { id: Section; label: string; description: string }[] = [
   { id: "overview", label: "Overview", description: "Thesis · 4 core insights" },
-  { id: "funnel", label: "Funnel CRO", description: "Trust breaks down at 4 stages" },
-  { id: "seo", label: "SEO Gap Map", description: "Free revenue sitting untapped" },
+  { id: "funnel", label: "Funnel CRO", description: "Small fixes, meaningful lift" },
+  { id: "seo", label: "SEO Gap Map", description: "Strong base, big growth gaps" },
   { id: "campaign", label: "Campaign Flow", description: "AI as the acquisition hook" },
-  { id: "email", label: "Email & SMS", description: "Warm leads being wasted" },
+  { id: "email", label: "Email & SMS", description: "Close the loop after AI report" },
   { id: "matrix", label: "Growth Matrix", description: "What to do first" },
   { id: "plan", label: "90-Day Plan", description: "First 90 days" },
 ];
@@ -178,32 +178,32 @@ function OverviewSection({ setActive }: { setActive: (s: Section) => void }) {
       nav: "funnel" as Section,
       color: "border-violet-200 dark:border-violet-900 bg-violet-50 dark:bg-violet-950/20",
       badge: "bg-violet-100 dark:bg-violet-950 text-violet-700 dark:text-violet-400",
-      title: "The funnel leaks trust at every step",
-      body: "Dual CTAs on landing, a blank text box in the AI, and the lawyer CTA buried at the bottom of the report. Each stage loses users that should convert — and all fixes are low effort.",
+      title: "Strong funnel with clear conversion upside",
+      body: "The core product works well — the opportunity is in small UX refinements at each stage. Single CTA on landing, guided input in the AI, and a surfaced lawyer CTA in the report. All low effort, meaningful lift.",
       cta: "See Funnel CRO →",
     },
     {
       nav: "seo" as Section,
       color: "border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950/20",
       badge: "bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-400",
-      title: "Free revenue sitting on the table",
-      body: "High-intent city × practice area searches — Sydney Immigration, Perth Mining Injury, Canberra Employment — driving thousands of monthly searches with zero LawConnect page competing.",
+      title: "Existing SEO foundation with significant room to grow",
+      body: "LawConnect already ranks for core practice areas in major cities. The opportunity is in the gaps — high-volume searches like Sydney Immigration, Perth Mining Injury, and Canberra Employment with no competing page yet.",
       cta: "See SEO Gap Map →",
     },
     {
       nav: "campaign" as Section,
       color: "border-pink-200 dark:border-pink-900 bg-pink-50 dark:bg-pink-950/20",
       badge: "bg-pink-100 dark:bg-pink-950 text-pink-700 dark:text-pink-400",
-      title: "AI is the moat — use it as the hook",
-      body: "LawConnect's AI tool is genuinely differentiated vs. traditional legal directories. Stop selling lawyer access upfront. Lead with free answers, earn trust, then convert. Users arrive warmer.",
+      title: "The AI tool is a genuine competitive advantage",
+      body: "LawConnect already has something most legal directories don't — an AI that answers legal questions for free. Leading with that in paid and organic channels attracts users earlier in the journey and converts them warmer.",
       cta: "See Campaign Flow →",
     },
     {
       nav: "email" as Section,
       color: "border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/20",
       badge: "bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400",
-      title: "Email & SMS is completely untapped",
-      body: "Users who complete the AI report but don't connect with a lawyer are a warm audience being wasted. A simple 2-step re-engagement sequence could recover a meaningful percentage with minimal build.",
+      title: "Quick win: close the loop after the AI report",
+      body: "Users who get an AI report are already engaged and qualified. A simple follow-up sequence — connecting their query to a matched lawyer — is a high-leverage, low-effort retention play that currently doesn't exist.",
       cta: "See Email & SMS →",
     },
   ];
@@ -238,7 +238,7 @@ function OverviewSection({ setActive }: { setActive: (s: Section) => void }) {
 
       <div className="rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 p-6">
         <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
-          <span className="font-semibold text-zinc-700 dark:text-zinc-300">The through-line:</span> Legal is high anxiety, high cost, high stakes. Every insight here comes back to one thing — reducing fear before asking for commitment. That's the lens applied across every section of this audit.
+          <span className="font-semibold text-zinc-700 dark:text-zinc-300">The through-line:</span> Legal is high anxiety, high cost, high stakes. LawConnect already has the right product — the opportunity is in earning trust earlier and making it easier to take the next step. That's the lens applied across every section of this audit.
         </p>
       </div>
     </div>
@@ -253,7 +253,7 @@ function FunnelSection() {
     <div>
       <div className="mb-8">
         <h2 className="text-2xl font-bold tracking-tight mb-1">Consumer Funnel — CRO Analysis</h2>
-        <p className="text-sm font-medium text-violet-600 dark:text-violet-400 mb-2">Trust breaks down at 4 stages — all fixable with low effort</p>
+        <p className="text-sm font-medium text-violet-600 dark:text-violet-400 mb-2">Solid funnel — small refinements at each stage unlock meaningful conversion lift</p>
         <p className="text-zinc-500 dark:text-zinc-400 text-sm">
           4-stage breakdown with before/after mockups, friction analysis, and A/B test hypotheses for each step.
         </p>
@@ -351,7 +351,7 @@ function SEOSection() {
     <div>
       <div className="mb-8">
         <h2 className="text-2xl font-bold tracking-tight mb-1">Programmatic SEO — Coverage Map</h2>
-        <p className="text-sm font-medium text-blue-600 dark:text-blue-400 mb-2">High-intent searches with zero LawConnect page competing — free revenue untapped</p>
+        <p className="text-sm font-medium text-blue-600 dark:text-blue-400 mb-2">Strong existing coverage — high-volume gaps represent the next wave of organic growth</p>
         <p className="text-zinc-500 dark:text-zinc-400 text-sm">
           LawConnect URL structure: <code className="text-xs bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded">/en-au/find/[practice-area]/[state]/[city]</code>.
           Every gap is a missing page for a real, high-intent search query.
@@ -1050,9 +1050,9 @@ function EmailSection() {
     <div className="space-y-12">
       <div>
         <h2 className="text-2xl font-bold tracking-tight mb-1">Email & SMS — Current State & Strategy</h2>
-        <p className="text-sm font-medium text-emerald-600 dark:text-emerald-400 mb-2">Warm leads from the AI report are dropping off with no follow-up — completely untapped</p>
+        <p className="text-sm font-medium text-emerald-600 dark:text-emerald-400 mb-2">The biggest quick win: follow up after the AI report and connect users to a matched lawyer</p>
         <p className="text-zinc-500 dark:text-zinc-400 text-sm max-w-2xl">
-          Based on a real user journey through LawConnect — account creation, AI chat, and enquiry abandonment. This shows exactly what fired, what broke, and what was never sent.
+          Users who complete the AI report are already qualified and engaged. A targeted follow-up sequence — linking their specific query to a matched lawyer — is the highest-leverage, lowest-effort play available.
         </p>
       </div>
 
