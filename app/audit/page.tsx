@@ -1255,6 +1255,7 @@ export default function AuditPage() {
             <div className="pt-4 border-t border-zinc-100 dark:border-zinc-900 mt-4">
               <p className="text-xs text-zinc-400 px-3">Built with Claude Code</p>
               <p className="text-xs text-zinc-300 dark:text-zinc-600 px-3 mt-0.5">marketingskills by coreyhaines31</p>
+              <p className="text-xs text-zinc-400 px-3 mt-2">Project by Italo Camargo</p>
             </div>
           </nav>
         </aside>
