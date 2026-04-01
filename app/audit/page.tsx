@@ -27,7 +27,7 @@ const STATUS_CONFIG = {
 };
 
 function StageScreen({ type }: { type: string }) {
-  if (type === "showcase-before") return (
+  if (type === "guide-before") return (
     <div className="bg-white dark:bg-zinc-950 rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden text-xs">
       <div className="bg-zinc-50 dark:bg-zinc-900 px-3 py-2 flex items-center justify-between border-b border-zinc-100 dark:border-zinc-800">
         <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-blue-500" /><span className="font-semibold text-zinc-600 dark:text-zinc-300">LawConnect</span></div>
@@ -35,19 +35,21 @@ function StageScreen({ type }: { type: string }) {
       </div>
       <div className="p-4 space-y-3">
         <p className="font-bold text-zinc-800 dark:text-zinc-100 text-sm leading-snug">Find trusted lawyers across Australia</p>
-        <p className="text-zinc-500 text-[10px] leading-relaxed">Ask about any legal matter and get instant AI answers without the legal jargon.</p>
         <div className="flex gap-2">
           <div className="flex-1 rounded-lg bg-blue-600 text-white text-[10px] font-semibold text-center py-1.5">Find a lawyer</div>
           <div className="flex-1 rounded-lg border border-zinc-200 dark:border-zinc-700 text-zinc-500 text-[10px] font-medium text-center py-1.5">Ask a question</div>
         </div>
-        <div className="rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 px-3 py-3 text-center">
-          <p className="text-[10px] text-zinc-400 italic">↑ That's it. No demo. No preview. Just a description.</p>
+        <div className="rounded-xl border border-dashed border-zinc-200 dark:border-zinc-700 px-3 py-4 text-center space-y-1">
+          <p className="text-[10px] text-zinc-400">User clicks "Ask a question"</p>
+          <p className="text-[10px] text-zinc-300 dark:text-zinc-600">↓</p>
+          <div className="rounded-lg border border-zinc-200 dark:border-zinc-700 px-2 py-2 text-zinc-300 dark:text-zinc-600 text-[10px]">Type your legal question here...</div>
+          <p className="text-[9px] text-zinc-300 dark:text-zinc-600 italic">Blank page. No guidance. High drop-off.</p>
         </div>
       </div>
     </div>
   );
 
-  if (type === "showcase-after") return (
+  if (type === "guide-after") return (
     <div className="bg-white dark:bg-zinc-950 rounded-xl border-2 border-violet-300 dark:border-violet-700 overflow-hidden text-xs">
       <div className="bg-violet-50 dark:bg-violet-950/40 px-3 py-2 flex items-center justify-between border-b border-violet-100 dark:border-violet-900">
         <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-violet-500" /><span className="font-semibold text-zinc-600 dark:text-zinc-300">LawConnect</span></div>
@@ -55,23 +57,25 @@ function StageScreen({ type }: { type: string }) {
       </div>
       <div className="p-4 space-y-2.5">
         <p className="font-bold text-zinc-800 dark:text-zinc-100 text-sm leading-snug">Find trusted lawyers across Australia</p>
-        <div className="flex gap-2 pb-1">
-          <div className="flex-1 rounded-lg bg-blue-600 text-white text-[10px] font-semibold text-center py-1.5">Find a lawyer</div>
-          <div className="flex-1 rounded-lg bg-violet-600 text-white text-[10px] font-semibold text-center py-1.5">Ask a question</div>
-        </div>
-        <div className="rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 p-3 space-y-2">
-          <p className="text-[10px] text-zinc-400 uppercase tracking-wider font-semibold">See it in action</p>
-          <div className="rounded-lg bg-violet-50 dark:bg-violet-950/40 border border-violet-100 dark:border-violet-800 px-2 py-1.5 text-[10px] text-violet-700 dark:text-violet-300 italic">"Can my landlord keep my bond if I left early?"</div>
-          <div className="space-y-1">
-            <div className="h-1.5 rounded bg-zinc-200 dark:bg-zinc-700 w-full" />
-            <div className="h-1.5 rounded bg-zinc-200 dark:bg-zinc-700 w-4/5" />
-            <div className="h-1.5 rounded bg-zinc-200 dark:bg-zinc-700 w-5/6" />
+        <div className="rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 p-3 space-y-2.5">
+          <div className="flex items-center justify-between">
+            <p className="text-[10px] font-semibold text-zinc-700 dark:text-zinc-300">What area of law affects you?</p>
+            <span className="text-[9px] text-zinc-400">Step 1 of 2</span>
           </div>
-          <div className="flex gap-1 pt-0.5">
-            <div className="w-1.5 h-1.5 rounded-full bg-violet-400 mt-0.5" />
-            <div className="w-1.5 h-1.5 rounded-full bg-zinc-300 dark:bg-zinc-600 mt-0.5" />
-            <div className="w-1.5 h-1.5 rounded-full bg-zinc-300 dark:bg-zinc-600 mt-0.5" />
+          <div className="flex flex-wrap gap-1">
+            {["Family", "Employment", "Property", "Business", "Criminal"].map((a, i) => (
+              <span key={a} className={`rounded-full px-2 py-0.5 text-[9px] font-medium border ${i === 1 ? "bg-violet-600 text-white border-violet-600" : "border-zinc-200 dark:border-zinc-700 text-zinc-500"}`}>{a}</span>
+            ))}
           </div>
+          <div className="border-t border-zinc-100 dark:border-zinc-800 pt-2 space-y-1.5">
+            <p className="text-[10px] font-semibold text-zinc-700 dark:text-zinc-300">What's happening?</p>
+            <div className="flex flex-wrap gap-1">
+              {["Unfair dismissal", "No notice given", "Unpaid wages"].map((s, i) => (
+                <span key={s} className={`rounded-full px-2 py-0.5 text-[9px] font-medium border ${i === 1 ? "bg-violet-600 text-white border-violet-600" : "border-zinc-200 dark:border-zinc-700 text-zinc-500"}`}>{s}</span>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-lg bg-violet-600 text-white text-[10px] font-semibold text-center py-1.5">See my free legal insight →</div>
         </div>
       </div>
     </div>
