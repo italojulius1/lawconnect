@@ -544,37 +544,49 @@ function CampaignSection() {
 
       {/* SEM Keyword Volume */}
       <div>
-        <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-4">SEM — Keyword Volume & CPC Benchmarks</p>
-        <p className="text-xs text-zinc-400 mb-4">Source: Google Keyword Planner estimates. Legal is one of the highest CPC categories in Google Ads — high cost per click means high intent and high case value.</p>
-        <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
-          <div className="grid grid-cols-4 gap-0 bg-zinc-50 dark:bg-zinc-900 px-4 py-2 border-b border-zinc-100 dark:border-zinc-800">
-            <p className="text-xs font-semibold text-zinc-500">Keyword</p>
-            <p className="text-xs font-semibold text-zinc-500 text-center">Monthly searches</p>
-            <p className="text-xs font-semibold text-zinc-500 text-center">Avg. CPC</p>
-            <p className="text-xs font-semibold text-zinc-500 text-center">Opportunity</p>
-          </div>
+        <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-4">SEM — Google Ads Forecast (May 2026)</p>
+        <p className="text-xs text-zinc-400 mb-4">Source: Google Keyword Planner forecast export · Australia · Google Search · $40/day budget · Maximize Conversions.</p>
+
+        <div className="grid sm:grid-cols-4 gap-3 mb-5">
           {[
-            { keyword: "immigration lawyer sydney", volume: "8,000–15,000", cpc: "$18–35", opportunity: "High", color: "text-red-600 bg-red-50 dark:bg-red-950/30 dark:text-red-400" },
-            { keyword: "family lawyer sydney", volume: "6,000–12,000", cpc: "$15–28", opportunity: "High", color: "text-red-600 bg-red-50 dark:bg-red-950/30 dark:text-red-400" },
-            { keyword: "employment lawyer australia", volume: "5,000–9,000", cpc: "$12–22", opportunity: "High", color: "text-red-600 bg-red-50 dark:bg-red-950/30 dark:text-red-400" },
-            { keyword: "personal injury lawyer brisbane", volume: "4,000–7,000", cpc: "$20–40", opportunity: "High", color: "text-red-600 bg-red-50 dark:bg-red-950/30 dark:text-red-400" },
-            { keyword: "criminal lawyer melbourne", volume: "3,500–6,000", cpc: "$14–26", opportunity: "Medium", color: "text-amber-600 bg-amber-50 dark:bg-amber-950/30 dark:text-amber-400" },
-            { keyword: "free legal advice australia", volume: "8,000–14,000", cpc: "$6–12", opportunity: "High", color: "text-red-600 bg-red-50 dark:bg-red-950/30 dark:text-red-400" },
-            { keyword: "ask a lawyer online free", volume: "3,000–6,000", cpc: "$5–10", opportunity: "High", color: "text-red-600 bg-red-50 dark:bg-red-950/30 dark:text-red-400" },
-          ].map((row, i) => (
-            <div key={i} className={`grid grid-cols-4 gap-0 px-4 py-3 border-b border-zinc-100 dark:border-zinc-800 last:border-0 ${i % 2 === 0 ? "" : "bg-zinc-50/50 dark:bg-zinc-900/30"}`}>
-              <p className="text-xs font-mono text-zinc-700 dark:text-zinc-300 flex items-center">{row.keyword}</p>
-              <p className="text-xs text-zinc-600 dark:text-zinc-400 text-center flex items-center justify-center">{row.volume}</p>
-              <p className="text-xs text-zinc-600 dark:text-zinc-400 text-center flex items-center justify-center">{row.cpc}</p>
-              <div className="flex items-center justify-center">
-                <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${row.color}`}>{row.opportunity}</span>
-              </div>
+            { label: "Est. clicks / month", value: "~230", sub: "at $40/day budget" },
+            { label: "Avg. CPC", value: "$5.39 AUD", sub: "lower than avg. legal" },
+            { label: "Est. impressions", value: "~10,170", sub: "per month" },
+            { label: "Est. CPA", value: "$71 AUD", sub: "at 7.55% conv. rate" },
+          ].map((stat) => (
+            <div key={stat.label} className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 px-4 py-3">
+              <p className="text-xs text-zinc-400 mb-1">{stat.label}</p>
+              <p className="text-xl font-bold text-zinc-900 dark:text-white">{stat.value}</p>
+              <p className="text-xs text-zinc-400 mt-0.5">{stat.sub}</p>
             </div>
           ))}
         </div>
-        <div className="mt-3 rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-100 dark:border-amber-900 px-4 py-3">
+
+        <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden mb-4">
+          <div className="grid grid-cols-3 gap-0 bg-zinc-50 dark:bg-zinc-900 px-4 py-2 border-b border-zinc-100 dark:border-zinc-800">
+            <p className="text-xs font-semibold text-zinc-500">Device</p>
+            <p className="text-xs font-semibold text-zinc-500 text-center">Clicks</p>
+            <p className="text-xs font-semibold text-zinc-500 text-center">CTR</p>
+          </div>
+          {[
+            { device: "Desktop", clicks: "118", ctr: "4.0%", bar: 52 },
+            { device: "Mobile", clicks: "105", ctr: "1.5%", bar: 46 },
+            { device: "Tablet", clicks: "6", ctr: "4.2%", bar: 3 },
+          ].map((row, i) => (
+            <div key={i} className="grid grid-cols-3 gap-0 px-4 py-3 border-b border-zinc-100 dark:border-zinc-800 last:border-0">
+              <p className="text-xs text-zinc-700 dark:text-zinc-300 flex items-center gap-2">
+                <span className="inline-block h-1.5 rounded-full bg-blue-400" style={{ width: `${row.bar}px` }} />
+                {row.device}
+              </p>
+              <p className="text-xs text-zinc-600 dark:text-zinc-400 text-center flex items-center justify-center">{row.clicks}</p>
+              <p className="text-xs text-zinc-600 dark:text-zinc-400 text-center flex items-center justify-center">{row.ctr}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-100 dark:border-amber-900 px-4 py-3">
           <p className="text-xs text-amber-700 dark:text-amber-400">
-            <span className="font-semibold">Key insight:</span> "free legal advice" and "ask a lawyer online free" have high volume at lower CPC — these are the exact searches where LawConnect's AI tool is the perfect answer. Leading with AI in ads directly matches search intent and lowers acquisition cost.
+            <span className="font-semibold">Key insight:</span> Avg CPC of $5.39 AUD is well below typical legal CPCs ($15–40) — suggesting the keyword mix skews informational ("free legal advice", "ask a lawyer"). This validates the AI-first strategy: meet users at the research stage, earn trust, then convert. At $71 CPA with a $40/day budget, scaling spend directly scales leads.
           </p>
         </div>
       </div>
