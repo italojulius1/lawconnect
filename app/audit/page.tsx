@@ -1120,8 +1120,8 @@ function EmailSection() {
                     : "text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300"
                 }`}
               >
-                <div className="text-xs font-mono opacity-50 mb-0.5">{email.delay}</div>
-                {email.name}
+                <div className="text-xs font-mono opacity-50 mb-0.5">{email.timing}</div>
+                {email.channel} {email.num}
               </button>
             ))}
           </div>
@@ -1133,7 +1133,7 @@ function EmailSection() {
               <div className="rounded-xl border border-zinc-200 dark:border-zinc-700 overflow-hidden text-sm">
                 <div className="bg-zinc-50 dark:bg-zinc-900 px-4 py-3 border-b border-zinc-100 dark:border-zinc-800">
                   <p className="font-semibold text-zinc-800 dark:text-zinc-200 mb-1">{email.subject}</p>
-                  <p className="text-xs text-zinc-400">From: LawConnect · {email.delay} after trigger</p>
+                  <p className="text-xs text-zinc-400">From: LawConnect · {email.timing} after trigger</p>
                 </div>
                 <div className="p-4 bg-white dark:bg-zinc-950 space-y-3 text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
                   {email.body.split("\n\n").map((para, i) => (
@@ -1149,7 +1149,7 @@ function EmailSection() {
               <div>
                 <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">Details</p>
                 <div className="space-y-2 text-sm">
-                  <div className="flex justify-between"><span className="text-zinc-400">Send delay</span><span className="font-medium text-zinc-700 dark:text-zinc-300">{email.delay}</span></div>
+                  <div className="flex justify-between"><span className="text-zinc-400">Send delay</span><span className="font-medium text-zinc-700 dark:text-zinc-300">{email.timing}</span></div>
                   <div className="flex justify-between"><span className="text-zinc-400">Channel</span><span className="font-medium text-zinc-700 dark:text-zinc-300">{email.channel}</span></div>
                   <div className="flex justify-between"><span className="text-zinc-400">Primary CTA</span><span className="font-medium text-zinc-700 dark:text-zinc-300">{email.cta}</span></div>
                 </div>
