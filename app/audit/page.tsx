@@ -27,39 +27,52 @@ const STATUS_CONFIG = {
 };
 
 function StageScreen({ type }: { type: string }) {
-  if (type === "landing-before") return (
+  if (type === "showcase-before") return (
     <div className="bg-white dark:bg-zinc-950 rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden text-xs">
       <div className="bg-zinc-50 dark:bg-zinc-900 px-3 py-2 flex items-center justify-between border-b border-zinc-100 dark:border-zinc-800">
         <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-blue-500" /><span className="font-semibold text-zinc-600 dark:text-zinc-300">LawConnect</span></div>
-        <div className="flex gap-2 text-zinc-400 text-[10px]"><span>Find a Lawyer</span><span>How it works</span></div>
+        <div className="flex gap-2 text-zinc-400 text-[10px]"><span>Find a Lawyer</span><span>Ask AI</span></div>
       </div>
       <div className="p-4 space-y-3">
-        <div className="flex items-center gap-1"><span className="text-yellow-400">★★★★★</span><span className="text-zinc-400 text-[10px]">4.8 · 35,858 reviews</span></div>
         <p className="font-bold text-zinc-800 dark:text-zinc-100 text-sm leading-snug">Find trusted lawyers across Australia</p>
-        <p className="text-zinc-500 text-[10px] leading-relaxed">Tell us about your situation, and we'll match you with a lawyer suited to your needs.</p>
+        <p className="text-zinc-500 text-[10px] leading-relaxed">Ask about any legal matter and get instant AI answers without the legal jargon.</p>
         <div className="flex gap-2">
           <div className="flex-1 rounded-lg bg-blue-600 text-white text-[10px] font-semibold text-center py-1.5">Find a lawyer</div>
           <div className="flex-1 rounded-lg border border-zinc-200 dark:border-zinc-700 text-zinc-500 text-[10px] font-medium text-center py-1.5">Ask a question</div>
+        </div>
+        <div className="rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 px-3 py-3 text-center">
+          <p className="text-[10px] text-zinc-400 italic">↑ That's it. No demo. No preview. Just a description.</p>
         </div>
       </div>
     </div>
   );
 
-  if (type === "landing-after") return (
+  if (type === "showcase-after") return (
     <div className="bg-white dark:bg-zinc-950 rounded-xl border-2 border-violet-300 dark:border-violet-700 overflow-hidden text-xs">
       <div className="bg-violet-50 dark:bg-violet-950/40 px-3 py-2 flex items-center justify-between border-b border-violet-100 dark:border-violet-900">
         <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-violet-500" /><span className="font-semibold text-zinc-600 dark:text-zinc-300">LawConnect</span></div>
-        <div className="flex gap-2 text-zinc-400 text-[10px]"><span>Find a Lawyer</span><span>How it works</span></div>
+        <div className="flex gap-2 text-zinc-400 text-[10px]"><span>Find a Lawyer</span><span>Ask AI</span></div>
       </div>
-      <div className="p-4 space-y-3">
-        <div className="inline-flex items-center gap-1 rounded-full bg-violet-50 dark:bg-violet-950 border border-violet-100 dark:border-violet-900 px-2 py-0.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-violet-500" /><span className="text-[10px] text-violet-600 dark:text-violet-400">Free · No sign-up needed</span>
+      <div className="p-4 space-y-2.5">
+        <p className="font-bold text-zinc-800 dark:text-zinc-100 text-sm leading-snug">Find trusted lawyers across Australia</p>
+        <div className="flex gap-2 pb-1">
+          <div className="flex-1 rounded-lg bg-blue-600 text-white text-[10px] font-semibold text-center py-1.5">Find a lawyer</div>
+          <div className="flex-1 rounded-lg bg-violet-600 text-white text-[10px] font-semibold text-center py-1.5">Ask a question</div>
         </div>
-        <p className="font-bold text-zinc-800 dark:text-zinc-100 text-sm leading-snug">Understand your rights before you call a lawyer.</p>
-        <p className="text-zinc-500 text-[10px] leading-relaxed">Ask our free AI any legal question. Get a plain-English answer in minutes.</p>
-        <div className="rounded-lg bg-violet-600 text-white text-[10px] font-semibold text-center py-1.5">Ask the AI — it's free</div>
-        <p className="text-center text-[10px] text-zinc-400">or <span className="underline">browse lawyers</span></p>
-        <div className="flex items-center justify-center gap-1"><span className="text-yellow-400 text-[10px]">★★★★★</span><span className="text-zinc-400 text-[10px]">4.8 · 35,858 people helped</span></div>
+        <div className="rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 p-3 space-y-2">
+          <p className="text-[10px] text-zinc-400 uppercase tracking-wider font-semibold">See it in action</p>
+          <div className="rounded-lg bg-violet-50 dark:bg-violet-950/40 border border-violet-100 dark:border-violet-800 px-2 py-1.5 text-[10px] text-violet-700 dark:text-violet-300 italic">"Can my landlord keep my bond if I left early?"</div>
+          <div className="space-y-1">
+            <div className="h-1.5 rounded bg-zinc-200 dark:bg-zinc-700 w-full" />
+            <div className="h-1.5 rounded bg-zinc-200 dark:bg-zinc-700 w-4/5" />
+            <div className="h-1.5 rounded bg-zinc-200 dark:bg-zinc-700 w-5/6" />
+          </div>
+          <div className="flex gap-1 pt-0.5">
+            <div className="w-1.5 h-1.5 rounded-full bg-violet-400 mt-0.5" />
+            <div className="w-1.5 h-1.5 rounded-full bg-zinc-300 dark:bg-zinc-600 mt-0.5" />
+            <div className="w-1.5 h-1.5 rounded-full bg-zinc-300 dark:bg-zinc-600 mt-0.5" />
+          </div>
+        </div>
       </div>
     </div>
   );
